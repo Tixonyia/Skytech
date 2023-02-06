@@ -1,0 +1,41 @@
+{% extends 'people/base.html' %}
+
+
+{%block title%}
+    <title>List</title>
+{%endblock title%}
+
+{%block content%}
+
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <span class="fs-4"> Sorting </span>
+      </a>
+      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+          <form  method="get">
+              <button type="submit" class="me-2 py-2 btn btn-light"  onclick name="name" value="id">Id</button>
+              <button type="submit" class="me-2 py-2 btn btn-light"  onclick name="name" value="name">Name</button>
+              <button type="submit" class="me-2 py-2 btn btn-light" onclick name="name" value="position">Position</button>
+              <button type="submit" class="me-2 py-2 btn btn-light"  onclick name="name" value="date_employment">Date employment</button>
+              <button type="submit" class="me-2 py-2 btn btn-light" onclick name="name" value="salary">Salary</button>
+          </form>
+      </nav>
+    </div>
+
+
+            <ol class="list-group list-group-numbered">
+                {% for key, person in persons.items%}
+                        <ul class="list-group list-group-horizontal">
+                        {% for key, val in person.items%}
+                            {% if key == 'photo' %}
+                                <img src="media/{{val}}" width="50px">
+                            {% else %}
+                                <li class="list-group-item">{{val}}</li>
+                            {% endif %}
+                       {% endfor %}
+                        </ul>
+                {% endfor %}
+            </ol>
+
+
+{%endblock content%}

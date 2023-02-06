@@ -1,0 +1,48 @@
+{% extends 'people/base.html' %}
+
+
+{%block title%}
+    <title>Tree</title>
+{%endblock title%}
+
+{%block content%}
+    <div class="modal modal-alert position-static d-block bg-secondary py-2" tabindex="-1" role="dialog" id="modalChoice">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content rounded-3 shadow">
+                  <div class="modal-body p-4 text-center">
+                    <h5 class="mb-0">Директор</h5>
+                    <h5 class="mb-0">{{staff.director}}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-0">
+
+            {% for dep_name, man in staff.departments.items%}
+                        <div class="col">
+                          <div class="card shadow-sm">
+                            <div class="modal modal-alert position-static d-block bg-secondary py-1" tabindex="-1" role="dialog">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content rounded-3 shadow">
+                                  <div class="modal-body p-1 text-center">
+                                      {% for pos, name in man.items%}
+                                            {% if 'Начальник' in pos %}
+                                                <h5 class="mb-0">{{pos}}: {{name}}</h5>
+                                            {% else %}
+                                                <div class="card-body">
+                                                  <p class="card-text">{{pos}}: {{name}}</p>
+                                                </div>
+                                            {% endif %}
+                                       {% endfor %}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+                    </div>
+            {% endfor %}
+
+        </div>
+
+{%endblock content%}
